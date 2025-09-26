@@ -1,0 +1,190 @@
+:root {
+  --text: #222;
+  --muted: #555;
+  --accent1: #007aff;
+  --accent2: #7b61ff;
+  --radius: 20px;
+  --shadow: 0 12px 30px rgba(0,0,0,0.15);
+  font-family: "Segoe UI", Roboto, Inter, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f9f9ff;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+#bg-gradient {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 30% 30%, #7b61ff40, transparent 60%),
+              radial-gradient(circle at 70% 70%, #007aff40, transparent 60%);
+  z-index: 0;
+  animation: moveBg 12s ease-in-out infinite alternate;
+}
+@keyframes moveBg {
+  0% { background-position: 30% 30%, 70% 70%; }
+  100% { background-position: 50% 60%, 40% 30%; }
+}
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+.showcase {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  position: relative;
+  z-index: 1;
+}
+.showcase-block {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.showcase-block.left .text { order: 1; }
+.showcase-block.left .image { order: 2; }
+.showcase-block.right .image { order: 1; }
+.showcase-block.right .text { order: 2; }
+
+.showcase-block .text {
+  flex: 1;
+}
+.showcase-block .text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.showcase-block .text p {
+  color: var(--muted);
+}
+
+.showcase-block .image {
+  flex: 1;
+  text-align: center;
+}
+.showcase-block img {
+  max-width: 360px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transform: scale(0.9);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+.showcase-block.visible img {
+  transform: scale(1);
+  box-shadow: 0 15px 40px rgba(123,97,255,0.3);
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transition: all 1s ease;
+}
+.scroll-reveal.left {
+  transform: translateX(-120px) scale(0.9);
+}
+.scroll-reveal.right {
+  transform: translateX(120px) scale(0.9);
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.buy {
+  text-align: center;
+  padding: 100px 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  margin: 60px auto;
+  max-width: 800px;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+}
+.buy h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-glass, .btn-glow {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 999px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.4s ease;
+}
+
+.btn-glass {
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.5);
+  color: var(--accent1);
+}
+.btn-glass:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+.btn-glow {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  color: #fff;
+  box-shadow: 0 0 20px rgba(123,97,255,0.6);
+}
+.btn-glow:hover {
+  box-shadow: 0 0 35px rgba(123,97,255,0.9);
+  transform: translateY(-3px);
+}
+
+.footer {
+  text-align: center;
+  padding: 50px;
+  color: var(--muted);
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 768px) {
+  .showcase-block {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+  .showcase-block.left .text,
+  .showcase-block.right .text,
+  .showcase-block.left .image,
+  .showcase-block.right .image {
+    order: unset;
+  }
+}
